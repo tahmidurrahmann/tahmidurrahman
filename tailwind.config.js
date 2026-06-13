@@ -1,18 +1,19 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+const tailwindConfig = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       fontFamily: {
         inter: "'Inter', 'sans- serif'",
         raleway: "'Raleway', 'sans- serif'",
-        permanent : "'Permanent Marker', 'cursive'",
-    }
+        permanent: "'Permanent Marker', 'cursive'",
+      },
+    },
   },
-},
-plugins: [require("daisyui")],
-}
+  plugins: [],
+};
 
+export default tailwindConfig;
