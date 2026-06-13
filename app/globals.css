@@ -21,36 +21,6 @@
   background-position: top center;
 }
 
-.button {
-  outline: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #c60678;
-  min-width: 200px;
-  border: 0;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  padding: 16px 20px;
-  color: #fff;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.button:hover {
-  opacity: 0.95;
-}
-
-.button .animation {
-  border-radius: 100%;
-  animation: ripple 0.6s linear infinite;
-}
-
 @keyframes ripple {
   0% {
     box-shadow:
@@ -100,11 +70,37 @@
   }
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
+/* Hide scrollbars globally but keep functionality */
+html {
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Enforce Scroll Snapping ONLY on Tablet & Desktop (>= 768px) */
+@media (min-width: 768px) {
+  html {
+    scroll-snap-type: y mandatory;
   }
-  100% {
-    transform: translateX(-50%);
+
+  section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    min-height: 100dvh;
+  }
+}
+
+/* Safe Defaults for Mobile Devices (< 768px) */
+@media (max-width: 767px) {
+  html {
+    scroll-snap-type: none; /* Turn off snap completely */
+  }
+
+  section {
+    min-height: auto; /* Allow content to dictate its height */
+    padding-top: 4rem; /* Safe padding spacing for navbar */
+    padding-bottom: 4rem;
   }
 }

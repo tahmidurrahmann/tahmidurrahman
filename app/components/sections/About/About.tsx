@@ -1,66 +1,158 @@
+import { useState } from "react";
 import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { MdEmail, MdContentCopy, MdCheck } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
-import Heading from "../../shared/Heading/Heading";
+import { useScrollReveal } from "../../../hooks/useScrollReveal";
+
+const contactDetails = [
+  {
+    icon: <FaWhatsapp size={18} />,
+    label: "WhatsApp",
+    value: "+8801843821277",
+    href: "https://wa.me/8801843821277",
+    copyable: true,
+  },
+  {
+    icon: <MdEmail size={18} />,
+    label: "Email",
+    value: "tahmidurahmann@gmail.com",
+    href: "mailto:tahmidurahmann@gmail.com",
+    copyable: true,
+  },
+  {
+    icon: <FaLocationDot size={18} />,
+    label: "Location",
+    value: "Dhaka, Bangladesh",
+    href: "https://maps.google.com/?q=Dhaka,+Bangladesh",
+    copyable: false,
+  },
+];
 
 const About = () => {
+  const ref = useScrollReveal<HTMLDivElement>();
+  const [copiedText, setCopiedText] = useState<string | null>(null);
+
+  const handleCopy = (e: React.MouseEvent, value: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(value);
+    setCopiedText(value);
+    setTimeout(() => setCopiedText(null), 2000);
+  };
+
   return (
-    <div id="about">
-      <Heading title="About Me"></Heading>
-      <div className="flex flex-col lg:flex-row justify-evenly items-center gap-16 xl:gap-60 max-w-screen-xl mx-auto px-6">
-        <div className="px-6 flex-1">
-          <img
-            className="rounded-full border-x-transparent border-y-[#c60678]  border-8 w-60 md:w-72 lg:w-96"
-            src="https://i.ibb.co/ZJ4KsqS/316938397-3409644562695466-8999828180897054437-n.jpg"
-            alt=""
-          />
+    <section
+      id="about"
+      className="relative bg-[#070b12] min-h-[100dvh] flex items-center overflow-hidden py-20 lg:py-0"
+    >
+      {/* Ambient background glow effect */}
+      <div className="absolute top-1/4 left-10 w-72 h-72 bg-[#c60678]/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-[#8b2fc9]/10 rounded-full blur-[150px] pointer-events-none" />
+
+      <div
+        ref={ref}
+        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-20 relative z-10"
+      >
+        {/* Photo Container with Elegant Glass & Border Hover Effect */}
+        <div data-reveal className="relative group flex-shrink-0">
+          <div className="absolute -inset-4 bg-gradient-to-tr from-[#c60678]/30 to-[#8b2fc9]/30 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-500" />
+
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-2xl overflow-hidden border border-white/10 bg-slate-900 p-2 group-hover:border-white/20 transition duration-300">
+            <img
+              src="https://i.ibb.co/ZJ4KsqS/316938397-3409644562695466-8999828180897054437-n.jpg"
+              alt="Tahmidur Rahman"
+              className="w-full h-full object-cover rounded-xl grayscale group-hover:grayscale-0 transition duration-500 scale-100 group-hover:scale-105"
+            />
+          </div>
         </div>
-        <div className="space-y-6 flex flex-col justify-start items-start flex-1 px-4 md:px-0">
-          <p className="text-gray-300 font-medium">
-            👋 Hello there! I'm{" "}
-            <span className="font-bold text-white">Tahmidur Rahman</span>, a
-            passionate{" "}
-            <span className="font-bold text-white">Frontend Developer</span>{" "}
-            dedicated to crafting seamless web applications. Expert in
-            translating functionality into user-friendly interfaces,
-            collaborating with design and back-end teams. Passionate about
-            staying ahead in frontend technologies to build dynamic and engaging
-            digital experiences.
-          </p>
-          <p className="flex gap-6 items-center">
-            <FaWhatsapp className="text-[#c60678]" size={26}></FaWhatsapp>
-            <span className="flex flex-col gap-2">
-              <span className="font-bold">Whatsapp</span>
-              <span>+8801843821277</span>
-            </span>
-          </p>
-          <p className="flex gap-6 items-center">
-            <FaLocationDot className="text-[#c60678]" size={26}></FaLocationDot>
-            <span className="flex flex-col gap-2">
-              <span className="font-bold">Location</span>
-              <span>28/2 Shamibagh Road, Dhaka</span>
-            </span>
-          </p>
-          <p className="flex gap-6 items-center">
-            <MdEmail className="text-[#c60678]" size={26}></MdEmail>
-            <span className="flex flex-col gap-2">
-              <span className="font-bold">Email</span>
-              <span> tahmidurahmann@gmail.com</span>
-            </span>
-          </p>
-          <a
-            rel="noreferrer"
-            target="_blank"
-            href="https://www.linkedin.com/in/tahmidur-rahmann/"
-            className="button"
+
+        {/* Text and Content Layout */}
+        <div className="flex flex-col gap-6 flex-1 max-w-xl">
+          <div
+            data-reveal
+            className="inline-flex items-center gap-2 text-[#c60678] text-xs font-bold tracking-widest uppercase bg-[#c60678]/5 px-3 py-1.5 rounded-full border border-[#c60678]/10 w-fit"
           >
-            <i className="animation"></i>LinkedIn
-            <FaLinkedin size={23} />
-            <i className="animation"></i>
-          </a>
+            <span className="block w-2 h-2 rounded-full bg-[#c60678] animate-pulse" />
+            About me
+          </div>
+
+          <h2
+            data-reveal
+            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight"
+          >
+            Building things that{" "}
+            <span className="bg-gradient-to-r from-[#c60678] via-[#a81cb3] to-[#8b2fc9] bg-clip-text text-transparent">
+              actually work.
+            </span>
+          </h2>
+
+          <p
+            data-reveal
+            className="text-gray-400 leading-relaxed text-sm sm:text-base font-normal"
+          >
+            I'm a Full-Stack Developer building production e-commerce systems
+            end-to-end — from payment gateway integrations and inventory state
+            machines to React dashboards and analytics pipelines. I care about
+            systems that don't silently break under load, and interfaces that
+            feel as solid as the backend behind them.
+          </p>
+
+          {/* Clean Contact Row Layout */}
+          <div
+            data-reveal
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 my-2"
+          >
+            {contactDetails.map(({ icon, label, value, href, copyable }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group/item flex items-center gap-3 p-3 rounded-xl bg-white/[0.02] border border-white/[0.05] hover:border-white/[0.12] hover:bg-white/[0.04] transition duration-200"
+              >
+                <span className="flex items-center justify-center w-9 h-9 rounded-lg bg-white/[0.04] text-gray-400 group-hover/item:text-[#c60678] group-hover/item:bg-[#c60678]/10 transition duration-200 flex-shrink-0">
+                  {icon}
+                </span>
+                <div className="overflow-hidden flex-1">
+                  <p className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">
+                    {label}
+                  </p>
+                  <p className="text-xs text-gray-300 truncate font-medium group-hover/item:text-white transition duration-200">
+                    {value}
+                  </p>
+                </div>
+                {copyable && (
+                  <button
+                    onClick={(e) => handleCopy(e, value)}
+                    className="p-1.5 rounded-md hover:bg-white/5 text-gray-500 hover:text-gray-300 transition opacity-0 group-hover/item:opacity-100"
+                    title={`Copy ${label}`}
+                  >
+                    {copiedText === value ? (
+                      <MdCheck className="text-green-400" size={14} />
+                    ) : (
+                      <MdContentCopy size={14} />
+                    )}
+                  </button>
+                )}
+              </a>
+            ))}
+          </div>
+
+          {/* Primary Call To Action */}
+          <div data-reveal className="pt-2">
+            <a
+              href="https://www.linkedin.com/in/tahmidur-rahmann/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#c60678] to-[#8b2fc9] hover:from-[#b0056a] hover:to-[#7a25b3] text-white text-sm font-semibold px-6 py-3 rounded-xl shadow-lg shadow-[#c60678]/20 transition-all duration-300 hover:shadow-[#c60678]/30 hover:-translate-y-0.5 active:translate-y-0"
+            >
+              <FaLinkedin size={18} />
+              Connect on LinkedIn
+            </a>
+          </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

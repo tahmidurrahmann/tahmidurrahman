@@ -1,90 +1,251 @@
-import { useState, useEffect } from "react";
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import { CgExternal } from "react-icons/cg";
 
-const phrases: string[] = [
-  "Transforming Vision into Interactive Reality.",
-  "Crafting Aesthetically Pleasing User Journeys.",
-  "Bringing Designs to Life with Precision.",
-  "Where Creativity Meets Code.",
-];
+const Banner = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
 
-const useTypewriter = (
-  words: string[],
-  speed: number = 50,
-  pause: number = 1000,
-): string => {
-  const [text, setText] = useState<string>("");
-  const [index, setIndex] = useState<number>(0);
-  const [deleting, setDeleting] = useState<boolean>(false);
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
   useEffect(() => {
-    const current = words[index % words.length];
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (!deleting && text.length < current.length) {
-      timeout = setTimeout(
-        () => setText(current.slice(0, text.length + 1)),
-        speed,
-      );
-    } else if (!deleting && text.length === current.length) {
-      timeout = setTimeout(() => setDeleting(true), pause);
-    } else if (deleting && text.length > 0) {
-      timeout = setTimeout(
-        () => setText(current.slice(0, text.length - 1)),
-        speed / 2,
-      );
-    } else if (deleting && text.length === 0) {
-      timeout = setTimeout(() => {
-        setDeleting(false);
-        setIndex((i) => i + 1);
-      }, speed);
-    }
-
-    return () => clearTimeout(timeout);
-  }, [text, deleting, index, words, speed, pause]);
-
-  return text;
-};
-
-const Banner = () => {
-  const typedText: string = useTypewriter(phrases);
+    const el = containerRef.current;
+    if (!el) return;
+    const targets = el.querySelectorAll<HTMLElement>("[data-reveal]");
+    gsap.set(targets, { opacity: 0, y: 28 });
+    gsap.to(targets, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      stagger: 0.12,
+      delay: 0.3,
+    });
+  }, []);
 
   return (
-    <div className="background" id="home">
-      <div className="max-w-screen-xl mx-auto lg:min-h-screen">
-        <div className="flex flex-col lg:flex-row justify-evenly items-center gap-20 xl:gap-60 py-24 lg:py-56">
-          <div className="space-y-6 lg:w-3/4 px-16 lg:px-4">
-            <div className="text-xl md:text-4xl font-extrabold text-white">
-              Hello, I'm <br />
-              <span className="text-2xl lg:text-6xl">Tahmidur Rahman</span>
-            </div>
-            <span className="text-[#c60678] font-semibold text-xl md:text-2xl lg:text-3xl inline-block min-h-[1.5em]">
-              {typedText}
-              <span className="animate-pulse">|</span>
-            </span>
-            <div>
-              <a
-                target="_blank"
-                href="https://docs.google.com/document/d/1YXrFPDjmROJZMYrHA8IP53Z_iyTVNYp1MUM7mHbJK8E/edit?usp=sharing"
-                rel="noopener noreferrer"
-                className="button"
-              >
-                <i className="animation"></i>Resume
-                <CgExternal size={23} />
-                <i className="animation"></i>
-              </a>
-            </div>
+    <section
+      id="home"
+      className="relative overflow-hidden bg-[#0a0a0f] h-[100dvh] flex items-center"
+    >
+      {/* Ambient glows */}
+      <div className="pointer-events-none absolute -top-32 -right-20 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(198,6,120,0.18)_0%,transparent_70%)]" />
+      <div className="pointer-events-none absolute -bottom-20 -left-16 w-[300px] h-[300px] rounded-full bg-[radial-gradient(circle,rgba(83,74,183,0.14)_0%,transparent_70%)]" />
+
+      <div
+        ref={containerRef}
+        className="relative z-10 w-full max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-20 pt-20 pb-8 flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-24"
+      >
+        {/* Left */}
+        <div className="flex flex-col gap-5 lg:max-w-[560px]">
+          <div
+            data-reveal
+            className="flex items-center gap-3 text-[#c60678] text-xs font-semibold tracking-widest uppercase"
+          >
+            <span className="block w-6 h-px bg-[#c60678]" />
+            Hello, I'm Tahmidur Rahman
           </div>
-          <div>
-            <img
-              className="rounded-full border-x-transparent border-y-[#c60678] border-8 w-60 md:w-72 lg:w-full"
-              src="https://i.ibb.co/Nr7XXRX/270224004-3140648616261730-993033304660391605-n.jpg"
-              alt=""
+
+          <h1
+            data-reveal
+            className="text-5xl sm:text-6xl lg:text-[64px] font-extrabold leading-[1.05] tracking-tight text-white"
+          >
+            Full-Stack
+            <br />
+            <span className="bg-gradient-to-br from-[#c60678] to-[#8b2fc9] bg-clip-text text-transparent">
+              Web Developer.
+            </span>
+          </h1>
+
+          <p
+            data-reveal
+            className="text-[#a0a0b0] text-sm sm:text-base leading-relaxed max-w-md"
+          >
+            I build fast, scalable web apps — clean architecture on the backend,
+            intuitive interfaces on the front.
+          </p>
+
+          <div data-reveal className="w-10 h-0.5 bg-[#c60678] rounded-full" />
+
+          <div data-reveal className="flex flex-wrap items-center gap-3">
+            <button
+              type="button"
+              onClick={() => scrollToSection("projects")}
+              className="inline-flex items-center gap-2 bg-[#c60678] hover:bg-[#a0055f] text-white text-sm font-semibold px-5 py-2.5 rounded-md transition-all duration-200 hover:-translate-y-px"
+            >
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              See my work
+            </button>
+            <a
+              href="https://docs.google.com/document/d/1YXrFPDjmROJZMYrHA8IP53Z_iyTVNYp1MUM7mHbJK8E/edit?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-[#c60678]/50 text-white text-sm font-medium px-5 py-2.5 rounded-md transition-all duration-200 hover:-translate-y-px hover:bg-[#a0055f]"
+            >
+              Resume
+              <CgExternal size={20} />
+            </a>
+          </div>
+
+          <div data-reveal className="flex items-center gap-2 mt-1">
+            {[
+              {
+                label: "GitHub",
+                href: "https://github.com/tahmidurrahmann",
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z" />
+                  </svg>
+                ),
+              },
+              {
+                label: "LinkedIn",
+                href: "https://www.linkedin.com/in/tahmidur-rahmann/",
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  </svg>
+                ),
+              },
+              {
+                label: "Facebook",
+                href: "https://www.facebook.com/tahmidurrahmann/",
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                  </svg>
+                ),
+              },
+              {
+                label: "Instagram",
+                href: "https://www.instagram.com/tahmidurahmann/",
+                icon: (
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                  </svg>
+                ),
+              },
+            ].map(({ label, href, icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="flex items-center justify-center w-9 h-9 rounded-md border border-white/[0.08] text-[#808090] hover:border-[#c60678]/50 hover:text-[#c60678] transition-all duration-200"
+              >
+                {icon}
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Right: Photo */}
+        <div data-reveal className="relative flex-shrink-0">
+          <svg
+            className="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+16px)] animate-[spin_10s_linear_infinite]"
+            viewBox="0 0 216 216"
+            fill="none"
+            aria-hidden="true"
+          >
+            <defs>
+              <linearGradient
+                id="ring-grad"
+                x1="0"
+                y1="0"
+                x2="216"
+                y2="216"
+                gradientUnits="userSpaceOnUse"
+              >
+                <stop offset="0%" stopColor="#c60678" />
+                <stop offset="50%" stopColor="#8b2fc9" />
+                <stop offset="100%" stopColor="#c60678" stopOpacity="0.15" />
+              </linearGradient>
+            </defs>
+            <circle
+              cx="108"
+              cy="108"
+              r="104"
+              stroke="url(#ring-grad)"
+              strokeWidth="1.5"
+              strokeDasharray="8 6"
+              strokeLinecap="round"
             />
+          </svg>
+          <img
+            src="https://i.ibb.co/Nr7XXRX/270224004-3140648616261730-993033304660391605-n.jpg"
+            alt="Tahmidur Rahman"
+            className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full object-cover border-[3px] border-[#0a0a0f]"
+          />
+          <div className="absolute bottom-2 -right-4 flex items-center gap-1.5 bg-[#0a0a0f] border border-white/10 rounded-full px-3 py-1.5 text-[11px] text-[#a0a0b0] font-medium whitespace-nowrap">
+            <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0 animate-pulse" />
+            On a Project via YouthLink
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/30 animate-bounce">
+        <span className="text-[10px] tracking-widest uppercase">Scroll</span>
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </div>
+    </section>
   );
 };
 
