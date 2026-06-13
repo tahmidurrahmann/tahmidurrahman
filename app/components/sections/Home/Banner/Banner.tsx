@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { GrDownload } from "react-icons/gr";
+import { CgExternal } from "react-icons/cg";
 
 const phrases: string[] = [
   "Transforming Vision into Interactive Reality.",
@@ -34,8 +34,10 @@ const useTypewriter = (
         speed / 2,
       );
     } else if (deleting && text.length === 0) {
-      setDeleting(false);
-      setIndex((i) => i + 1);
+      timeout = setTimeout(() => {
+        setDeleting(false);
+        setIndex((i) => i + 1);
+      }, speed);
     }
 
     return () => clearTimeout(timeout);
@@ -62,12 +64,13 @@ const Banner = () => {
             </span>
             <div>
               <a
-                rel="noreferrer"
                 target="_blank"
-                href="https://drive.google.com/uc?export=download&id=1TWviQsOBViuf07VgT_fN-4KbrkGshxex"
+                href="https://docs.google.com/document/d/1YXrFPDjmROJZMYrHA8IP53Z_iyTVNYp1MUM7mHbJK8E/edit?usp=sharing"
+                rel="noopener noreferrer"
                 className="button"
               >
-                <i className="animation"></i>Download Resume <GrDownload />
+                <i className="animation"></i>Resume
+                <CgExternal size={23} />
                 <i className="animation"></i>
               </a>
             </div>
