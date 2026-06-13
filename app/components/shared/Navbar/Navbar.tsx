@@ -140,14 +140,14 @@ const NavBar = () => {
   return (
     <div
       ref={headerRef}
-      className={`fixed top-0 z-50 w-full overflow-hidden transition-[background-color,backdrop-filter,border-color] duration-500 md:bg-transparent md:!h-auto ${
+      className={`fixed top-0 pointer-events-none z-50 w-full overflow-hidden transition-[background-color,backdrop-filter,border-color] duration-500 md:bg-transparent md:!h-auto ${
         scrolled
           ? "py-2 md:border-b md:border-white/5 md:bg-[#0a0e16]/80 md:backdrop-blur-md"
           : "py-4"
       }`}
       style={{ height: "auto" }}
     >
-      <div className="mx-auto max-w-screen-2xl">
+      <div className="pointer-events-auto mx-auto max-w-screen-2xl">
         <div className="flex items-center justify-between px-4 xl:px-0">
           <button
             type="button"
@@ -192,7 +192,7 @@ const NavBar = () => {
       {/* Full-screen mobile nav, revealed as header expands */}
       <div
         ref={navWrapperRef}
-        className="invisible flex h-[calc(100vh-5rem)] flex-col items-center justify-center gap-8 md:hidden"
+        className="pointer-events-auto invisible flex h-[calc(100vh-5rem)] flex-col items-center justify-center gap-8 md:hidden"
       >
         {links.map((link) => {
           const isActive = activeId === link.id;
