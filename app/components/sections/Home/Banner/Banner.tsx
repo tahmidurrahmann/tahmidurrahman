@@ -1,6 +1,7 @@
 "use client";
 import { CgExternal } from "react-icons/cg";
 import { useScrollReveal } from "../../../../hooks/useScrollReveal";
+import Heading from "../../../shared/Heading/Heading";
 
 const Banner = () => {
   const containerRef = useScrollReveal<HTMLDivElement>();
@@ -30,13 +31,7 @@ const Banner = () => {
       >
         {/* Left */}
         <div className="flex flex-col gap-5 lg:max-w-[560px]">
-          <div
-            data-reveal
-            className="flex items-center gap-3 text-[#c60678] text-xs font-semibold tracking-widest uppercase"
-          >
-            <span className="block w-6 h-px bg-[#c60678]" />
-            Hello, I'm Tahmidur Rahman.
-          </div>
+          <Heading headingText="Hello, I'm Tahmidur Rahman." />
 
           <h1
             data-reveal

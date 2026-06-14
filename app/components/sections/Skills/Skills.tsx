@@ -1,4 +1,5 @@
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
+import Heading from "../../shared/Heading/Heading";
 
 type Skill = { src: string; alt: string; docs: string };
 type SkillCategory = { title: string; skills: Skill[] };
@@ -94,21 +95,15 @@ const Skills = () => {
 
       <div
         ref={ref}
-        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 relative z-10"
+        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 relative z-10 pt-20 md:pt-0"
       >
         {/* Section Header */}
         <div className="mb-14">
-          <div
-            data-reveal
-            className="inline-flex items-center gap-2 text-[#c60678] text-xs font-bold tracking-widest uppercase bg-[#c60678]/5 px-3 py-1.5 rounded-full border border-[#c60678]/10 mb-4 w-fit"
-          >
-            <span className="block w-2 h-2 rounded-full bg-[#c60678]" />
-            What I work with
-          </div>
+          <Heading headingText="What I work with" />
 
           <h2
             data-reveal
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mt-5"
           >
             My Expert{" "}
             <span className="bg-gradient-to-r from-[#c60678] via-[#a81cb3] to-[#8b2fc9] bg-clip-text text-transparent">

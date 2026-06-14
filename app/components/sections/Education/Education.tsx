@@ -1,4 +1,5 @@
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
+import Heading from "../../shared/Heading/Heading";
 
 const educationItems = [
   {
@@ -34,19 +35,13 @@ const Education = () => {
     >
       <div
         ref={ref}
-        className="w-full max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-20 py-0 md:py-24 lg:py-0"
+        className="w-full max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-20 pt-20"
       >
-        <div
-          data-reveal
-          className="flex items-center gap-3 text-[#c60678] text-xs font-semibold tracking-widest uppercase mb-4"
-        >
-          <span className="block w-6 h-px bg-[#c60678]" />
-          Background
-        </div>
+        <Heading headingText="Background" />
 
         <h2
           data-reveal
-          className="text-3xl sm:text-4xl font-extrabold text-white mb-12"
+          className="text-3xl sm:text-4xl font-extrabold text-white mt-5 mb-12"
         >
           Education &{" "}
           <span className="bg-gradient-to-br from-[#c60678] to-[#8b2fc9] bg-clip-text text-transparent">

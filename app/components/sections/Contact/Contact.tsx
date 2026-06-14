@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
+import Heading from "../../shared/Heading/Heading";
 
 const inputClass =
   "w-full bg-[#0a0a0f] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#c60678]/60 transition-colors duration-200";
@@ -51,17 +52,11 @@ const Contact = () => {
         ref={ref}
         className="w-full max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-20 pt-28 pb-16 flex-1 flex flex-col justify-center relative z-10"
       >
-        <div
-          data-reveal
-          className="flex items-center gap-3 text-[#c60678] text-xs font-semibold tracking-widest uppercase mb-4"
-        >
-          <span className="block w-6 h-px bg-[#c60678]" />
-          Get in touch
-        </div>
+        <Heading headingText="Get in touch" />
 
         <h2
           data-reveal
-          className="text-3xl sm:text-4xl font-extrabold text-white mb-2"
+          className="text-3xl sm:text-4xl font-extrabold text-white mb-2 mt-5"
         >
           Let's Build{" "}
           <span className="bg-gradient-to-br from-[#c60678] to-[#8b2fc9] bg-clip-text text-transparent">

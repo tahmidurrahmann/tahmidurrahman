@@ -2,6 +2,7 @@ import { FaGithub } from "react-icons/fa";
 import { MdOutlineLiveTv } from "react-icons/md";
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
 import { useEffect, useRef, useState } from "react";
+import Heading from "../../shared/Heading/Heading";
 
 type Project = {
   title: string;
@@ -182,21 +183,15 @@ const Projects = () => {
 
       <div
         ref={ref}
-        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 relative z-10"
+        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 relative z-10 pt-6 lg:pt-20"
       >
         {/* Section Header */}
         <div className="mb-12">
-          <div
-            data-reveal
-            className="inline-flex items-center gap-2 text-[#c60678] text-xs font-bold tracking-widest uppercase bg-[#c60678]/5 px-3 py-1.5 rounded-full border border-[#c60678]/10 mb-4 w-fit"
-          >
-            <span className="block w-2 h-2 rounded-full bg-[#c60678]" />
-            Selected work
-          </div>
+          <Heading headingText="Selected work" />
 
           <h2
             data-reveal
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mt-5"
           >
             Featured{" "}
             <span className="bg-gradient-to-r from-[#c60678] via-[#a81cb3] to-[#8b2fc9] bg-clip-text text-transparent">

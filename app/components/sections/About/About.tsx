@@ -3,6 +3,7 @@ import { FaWhatsapp } from "react-icons/fa";
 import { MdEmail, MdContentCopy, MdCheck } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
+import Heading from "../../shared/Heading/Heading";
 
 const contactDetails = [
   {
@@ -67,15 +68,8 @@ const About = () => {
         </div>
 
         {/* Text and Content Layout */}
-        <div className="flex flex-col gap-6 flex-1 max-w-xl">
-          <div
-            data-reveal
-            className="inline-flex items-center gap-2 text-[#c60678] text-xs font-bold tracking-widest uppercase bg-[#c60678]/5 px-3 py-1.5 rounded-full border border-[#c60678]/10 w-fit"
-          >
-            <span className="block w-2 h-2 rounded-full bg-[#c60678] animate-pulse" />
-            About me
-          </div>
-
+        <div className="flex flex-col gap-5 flex-1 max-w-xl">
+          <Heading headingText="About me" />
           <h2
             data-reveal
             className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight"
