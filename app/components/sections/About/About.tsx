@@ -90,11 +90,12 @@ const About = () => {
             data-reveal
             className="text-gray-400 leading-relaxed text-sm sm:text-base font-normal"
           >
-            I'm a Full-Stack Developer building production e-commerce systems
-            end-to-end — from payment gateway integrations and inventory state
-            machines to React dashboards and analytics pipelines. I care about
-            systems that don't silently break under load, and interfaces that
-            feel as solid as the backend behind them.
+            I'm a full-stack developer with 2 years of experience taking
+            projects from idea to production. I work across the entire stack,
+            backend APIs, databases, and frontend interfaces, and I focus on
+            writing code that solves real problems, not just code that passes a
+            demo. Currently building at YouthLink Tech while studying CSE at
+            Dhaka City College.
           </p>
 
           {/* Clean Contact Row Layout */}
