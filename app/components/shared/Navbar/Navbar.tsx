@@ -96,40 +96,19 @@ const NavBar = () => {
   };
 
   const scrollToSection = (id: string) => {
-    const doScroll = () => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      gsap.to(window, {
-        duration: 0.5,
-        ease: "power3.inOut",
-        scrollTo: { y: el, offsetY: 0 },
-      });
-    };
-
     if (isOpen) {
-      const tl = timelineRef.current;
-      tl?.eventCallback("onReverseComplete", doScroll);
-      tl?.reverse();
+      timelineRef.current?.reverse();
       setIsOpen(false);
-    } else {
-      doScroll();
     }
+    // wait for collapse animation before scrolling on mobile
+    const delay = isOpen ? 400 : 0;
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, delay);
   };
-
-  // const scrollToSection = (id: string) => {
-  //   if (isOpen) {
-  //     timelineRef.current?.reverse();
-  //     setIsOpen(false);
-  //   }
-  //   // wait for collapse animation before scrolling on mobile
-  //   const delay = isOpen ? 400 : 0;
-  //   setTimeout(() => {
-  //     document.getElementById(id)?.scrollIntoView({
-  //       behavior: "smooth",
-  //       block: "start",
-  //     });
-  //   }, delay);
-  // };
 
   const desktopLinks = (
     <div className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-2 font-permanent text-sm text-white backdrop-blur-md">
