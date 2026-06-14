@@ -136,7 +136,7 @@ const NavBar = () => {
   return (
     <div
       ref={headerRef}
-      className={`fixed top-0 pointer-events-none z-50 w-full overflow-hidden border-b transition-[background-color,backdrop-filter,border-color] duration-500 md:bg-transparent md:!h-auto ${
+      className={`fixed top-0 pointer-events-none z-50 w-full overflow-hidden md:border-b transition-[background-color,backdrop-filter,border-color] duration-500 md:bg-transparent md:!h-auto ${
         scrolled
           ? "py-2 border-white/5 md:bg-[#0a0e16]/80 md:backdrop-blur-md"
           : "py-4 border-transparent"
