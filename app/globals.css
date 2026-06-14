@@ -69,38 +69,3 @@
     background-position: 0% 50%;
   }
 }
-
-/* Hide scrollbars globally but keep functionality */
-html {
-  overflow-y: scroll;
-  scrollbar-width: none;
-}
-html::-webkit-scrollbar {
-  display: none;
-}
-
-/* Enforce Scroll Snapping ONLY on Tablet & Desktop (>= 768px) */
-@media (min-width: 768px) {
-  html {
-    scroll-snap-type: y mandatory;
-  }
-
-  section {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-    min-height: 100dvh;
-  }
-}
-
-/* Safe Defaults for Mobile Devices (< 768px) */
-@media (max-width: 767px) {
-  html {
-    scroll-snap-type: none; /* Turn off snap completely */
-  }
-
-  section {
-    min-height: auto; /* Allow content to dictate its height */
-    padding-top: 4rem; /* Safe padding spacing for navbar */
-    padding-bottom: 4rem;
-  }
-}

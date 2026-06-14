@@ -19,10 +19,10 @@ const Contact = () => {
     setIsSending(true);
     emailjs
       .sendForm(
-        "service_c1kaq1l",
-        "template_sbprd1h",
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
         form.current,
-        "kM2ZZ-I4QiQPp3W81",
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
       )
       .then(
         () => {
@@ -70,8 +70,7 @@ const Contact = () => {
         </h2>
 
         <p data-reveal className="text-gray-400 text-sm mb-12 max-w-md">
-          Have something in mind? Fill out the form or reach me directly — I
-          typically respond within 24 hours.
+          Have something in mind? Fill out the form or reach me directly.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -82,31 +81,26 @@ const Contact = () => {
               onSubmit={sendEmail}
               className="flex flex-col gap-4"
             >
-              <input
-                type="text"
-                name="user_name"
-                placeholder="Your name"
-                className={inputClass}
-                required
-              />
-              <input
-                type="email"
-                name="user_email"
-                placeholder="Your email"
-                className={inputClass}
-                required
-              />
-              <input
-                type="text"
-                name="subject"
-                placeholder="Subject"
-                className={inputClass}
-                required
-              />
+              <div className="flex justify-between items-center gap-6">
+                <input
+                  type="text"
+                  name="user_name"
+                  placeholder="Name"
+                  className={inputClass}
+                  required
+                />
+                <input
+                  type="email"
+                  name="user_email"
+                  placeholder="Email"
+                  className={inputClass}
+                  required
+                />
+              </div>
               <textarea
                 name="message"
-                rows={6}
-                placeholder="Your message"
+                rows={10}
+                placeholder="Message"
                 className={`${inputClass} resize-none`}
                 required
               />

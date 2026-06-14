@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaWhatsapp } from "react-icons/fa";
 import { MdEmail, MdContentCopy, MdCheck } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
@@ -43,7 +43,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative bg-[#070b12] min-h-[100dvh] flex items-center overflow-hidden py-20 lg:py-0"
+      className="relative bg-[#070b12] min-h-[100dvh] flex items-center overflow-hidden py-0 md:py-20 lg:py-0"
     >
       {/* Ambient background glow effect */}
       <div className="absolute top-1/4 left-10 w-72 h-72 bg-[#c60678]/10 rounded-full blur-[120px] pointer-events-none" />
@@ -51,15 +51,15 @@ const About = () => {
 
       <div
         ref={ref}
-        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-20 relative z-10"
+        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-0 md:gap-16 lg:gap-20 relative z-10"
       >
         {/* Photo Container with Elegant Glass & Border Hover Effect */}
         <div data-reveal className="relative group flex-shrink-0">
           <div className="absolute -inset-4 bg-gradient-to-tr from-[#c60678]/30 to-[#8b2fc9]/30 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-500" />
 
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 rounded-2xl overflow-hidden border border-white/10 bg-slate-900 p-2 group-hover:border-white/20 transition duration-300">
+          <div className="hidden md:flex relative w-64 h-64 sm:w-80 sm:h-80 rounded-2xl overflow-hidden border border-white/10 bg-slate-900 p-2 group-hover:border-white/20 transition duration-300">
             <img
-              src="https://i.ibb.co/ZJ4KsqS/316938397-3409644562695466-8999828180897054437-n.jpg"
+              src="https://res.cloudinary.com/tahmidur-rahman/image/upload/v1781434505/316938397-3409644562695466-8999828180897054437-n_dmodpj.jpg"
               alt="Tahmidur Rahman"
               className="w-full h-full object-cover rounded-xl grayscale group-hover:grayscale-0 transition duration-500 scale-100 group-hover:scale-105"
             />
@@ -136,19 +136,6 @@ const About = () => {
                 )}
               </a>
             ))}
-          </div>
-
-          {/* Primary Call To Action */}
-          <div data-reveal className="pt-2">
-            <a
-              href="https://www.linkedin.com/in/tahmidur-rahmann/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#c60678] to-[#8b2fc9] hover:from-[#b0056a] hover:to-[#7a25b3] text-white text-sm font-semibold px-6 py-3 rounded-xl shadow-lg shadow-[#c60678]/20 transition-all duration-300 hover:shadow-[#c60678]/30 hover:-translate-y-0.5 active:translate-y-0"
-            >
-              <FaLinkedin size={18} />
-              Connect on LinkedIn
-            </a>
           </div>
         </div>
       </div>

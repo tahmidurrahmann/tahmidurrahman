@@ -6,20 +6,21 @@ const educationItems = [
     title: "BSc in Computer Science and Engineering",
     institution: "Dhaka City College",
     description:
-      "Comprehensive program covering algorithms, data structures, software engineering, databases, and web development.",
+      "Actively studying core CS fundamentals while simultaneously applying them in a production environment at work. Coursework in data structures, algorithms, and databases directly informs how I approach real engineering problems.",
   },
   {
     year: "2021 – 2022",
     title: "Higher Secondary Certificate (HSC)",
     institution: "Engineering University School & College",
     description:
-      "Completed the Higher Secondary Certificate program with a well-rounded science curriculum.",
+      "Science background with strong foundations in mathematics and physics, which shaped how I think about logic and problem solving.",
   },
   {
     year: "2020",
     title: "Secondary School Certificate (SSC)",
     institution: "Dhaka Collegiate School",
-    description: "Completed SSC with a specialization in Science.",
+    description:
+      "Completed SSC under the Science stream. First exposure to structured thinking and problem solving under pressure.",
   },
 ];
 
@@ -33,7 +34,7 @@ const Education = () => {
     >
       <div
         ref={ref}
-        className="w-full max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-20 py-24 lg:py-0"
+        className="w-full max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-20 py-0 md:py-24 lg:py-0"
       >
         <div
           data-reveal
@@ -88,41 +89,42 @@ const Education = () => {
           </div>
 
           {/* Experience */}
-          <div>
-            <h3
-              data-reveal
-              className="text-sm font-semibold uppercase tracking-widest text-gray-500 mb-8"
-            >
-              Experience
-            </h3>
-            <div
-              data-reveal
-              className="rounded-xl border border-white/10 bg-[#09101A] p-6 transition-transform duration-300 hover:-translate-y-1"
-            >
-              <time className="text-[11px] font-mono text-[#c60678] tracking-wider">
-                November 2023 – Present
-              </time>
-              <p className="mt-2 font-bold text-white text-sm">
-                Freelance Frontend Developer
-              </p>
-              <p className="mt-3 text-xs leading-6 text-gray-400">
-                Independently managing frontend development projects
-                specializing in responsive web design and user interface
-                development. Collaborating with clients to translate design
-                concepts into functional, user-friendly interfaces. Implementing
-                best practices to ensure code quality, performance, and
-                scalability.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {["React", "Next.js", "Tailwind", "TypeScript"].map((t) => (
-                  <span
-                    key={t}
-                    className="text-[10px] px-2 py-0.5 rounded border border-[#c60678]/30 text-[#c60678]/80"
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
+          <div
+            data-reveal
+            className="rounded-xl border border-white/10 bg-[#09101A] p-6 transition-transform duration-300 hover:-translate-y-1 h-fit"
+          >
+            <time className="text-[11px] font-mono text-[#c60678] tracking-wider">
+              April 2024 – Present
+            </time>
+            <p className="mt-2 font-bold text-white text-sm">
+              Full-Stack Developer
+            </p>
+            <p className="text-xs text-gray-500 mt-0.5">YouthLink Tech</p>
+            <p className="mt-3 text-xs leading-6 text-gray-400">
+              Started by building the company website backend and a content
+              management dashboard for blogs and portfolio items. Now leading
+              full-stack development on PoshaX, a production e-commerce
+              platform: payment gateway integration with SSLCommerz, inventory
+              state management, marketing analytics pipelines, and an internal
+              operations dashboard. Shipping to real users in a live
+              environment.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {[
+                "Node.js",
+                "Express",
+                "Next.js",
+                "TypeScript",
+                "MongoDB",
+                "PostgreSQL",
+              ].map((t) => (
+                <span
+                  key={t}
+                  className="text-[10px] px-2 py-0.5 rounded border border-[#c60678]/30 text-[#c60678]/80"
+                >
+                  {t}
+                </span>
+              ))}
             </div>
           </div>
         </div>

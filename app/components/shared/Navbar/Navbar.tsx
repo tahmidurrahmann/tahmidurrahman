@@ -45,34 +45,30 @@ const NavBar = () => {
       defaults: { duration: 0.35, ease: "power3.inOut" },
     });
 
-    // Expand header to full viewport height + solid background
     tl.to(headerRef.current, {
       height: "100vh",
       backgroundColor: "#0a0e16",
       backdropFilter: "blur(0px)",
     })
-      // Hamburger -> X
       .fromTo(
         topLineRef.current,
-        { rotate: 0, y: 0 },
-        { rotate: 45, y: 6 },
+        { rotate: 0, y: 0, width: "0.875rem" },
+        { rotate: 45, y: 6, width: "1.25rem" },
         "<",
       )
       .fromTo(middleLineRef.current, { opacity: 1 }, { opacity: 0 }, "<")
       .fromTo(
         bottomLineRef.current,
-        { rotate: 0, y: 0 },
-        { rotate: -45, y: -6 },
+        { rotate: 0, y: 0, width: "0.625rem" },
+        { rotate: -45, y: -6, width: "1.25rem" },
         "<",
       )
-      // Reveal nav links container
       .fromTo(
         navWrapperRef.current,
         { autoAlpha: 0 },
         { autoAlpha: 1, duration: 0.2 },
         "<0.1",
       )
-      // Stagger in each link
       .fromTo(
         navWrapperRef.current.querySelectorAll("[data-nav-link]"),
         { opacity: 0, y: 30 },
@@ -145,20 +141,14 @@ const NavBar = () => {
           ? "py-2 md:border-b md:border-white/5 md:bg-[#0a0e16]/80 md:backdrop-blur-md"
           : "py-4"
       }`}
-      style={{ height: "auto" }}
     >
-      <div className="pointer-events-auto mx-auto max-w-screen-2xl">
-        <div className="flex items-center justify-between px-4 xl:px-0">
+      <div className="pointer-events-auto mx-auto max-w-screen-2xl px-6 sm:px-12 lg:px-16">
+        <div className="flex items-center justify-between">
           <button
             type="button"
             onClick={() => scrollToSection("home")}
             className="flex items-center gap-1 font-permanent text-xl text-white transition-transform duration-300 hover:scale-105 sm:text-2xl md:text-3xl"
           >
-            <img
-              className="w-9 sm:w-11 md:w-[60px]"
-              src="https://i.ibb.co/3BPbCfh/21904da7d079ccffa6b95ecfc6f7bbb7-1.png"
-              alt="Tahmid logo"
-            />
             Tahmid
           </button>
 
@@ -171,19 +161,19 @@ const NavBar = () => {
               isOpen ? "Close navigation menu" : "Open navigation menu"
             }
             onClick={toggleMenu}
-            className="relative z-10 flex h-6 w-7 flex-col items-end justify-center gap-[6px] md:hidden"
+            className="relative z-10 flex h-5 w-5 flex-col items-end justify-center gap-[5px] md:hidden"
           >
             <span
               ref={topLineRef}
-              className="block h-[2px] w-7 origin-center rounded-full bg-white"
+              className="block h-[1.5px] w-3.5 origin-center rounded-full bg-white"
             />
             <span
               ref={middleLineRef}
-              className="block h-[2px] w-5 origin-center rounded-full bg-white"
+              className="block h-[1.5px] w-5 origin-center rounded-full bg-white"
             />
             <span
               ref={bottomLineRef}
-              className="block h-[2px] w-7 origin-center rounded-full bg-white"
+              className="block h-[1.5px] w-2.5 origin-center rounded-full bg-white"
             />
           </button>
         </div>
@@ -202,7 +192,7 @@ const NavBar = () => {
               type="button"
               data-nav-link
               onClick={() => scrollToSection(link.id)}
-              className={`font-permanent text-3xl transition-colors duration-300 ${
+              className={`font-permanent text-md transition-colors duration-300 ${
                 isActive ? "text-[#c60678]" : "text-white hover:text-[#c60678]"
               }`}
             >
