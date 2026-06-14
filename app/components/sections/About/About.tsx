@@ -43,7 +43,7 @@ const About = () => {
   return (
     <section
       id="about"
-      className="relative bg-[#070b12] min-h-[100dvh] flex items-center overflow-hidden py-0 md:py-20 lg:py-0"
+      className="relative min-h-[100dvh] flex items-center overflow-hidden py-0 md:py-20 lg:py-0"
     >
       {/* Ambient background glow effect */}
       <div className="absolute top-1/4 left-10 w-72 h-72 bg-[#c60678]/10 rounded-full blur-[120px] pointer-events-none" />

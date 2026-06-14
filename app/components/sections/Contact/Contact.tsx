@@ -1,6 +1,6 @@
 import { FaMessage } from "react-icons/fa6";
 import emailjs from "@emailjs/browser";
-import { type FormEvent, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
 
@@ -12,7 +12,7 @@ const Contact = () => {
   const ref = useScrollReveal<HTMLDivElement>({ stagger: 0.1 });
   const [isSending, setIsSending] = useState(false);
 
-  const sendEmail = (e: FormEvent<HTMLFormElement>) => {
+  const sendEmail = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!form.current || isSending) return;
 
@@ -41,7 +41,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative bg-[#09101A] min-h-[100dvh] flex flex-col justify-between overflow-x-hidden"
+      className="relative min-h-[100dvh] flex flex-col justify-between overflow-x-hidden"
     >
       {/* Background ambient lighting */}
       <div className="absolute bottom-0 right-1/4 w-[600px] h-[350px] bg-[#c60678]/5 rounded-full blur-[180px] pointer-events-none z-0" />
@@ -63,14 +63,15 @@ const Contact = () => {
           data-reveal
           className="text-3xl sm:text-4xl font-extrabold text-white mb-2"
         >
-          Let's discuss a{" "}
+          Let's Build{" "}
           <span className="bg-gradient-to-br from-[#c60678] to-[#8b2fc9] bg-clip-text text-transparent">
-            project.
+            Something
           </span>
         </h2>
 
         <p data-reveal className="text-gray-400 text-sm mb-12 max-w-md">
-          Have something in mind? Fill out the form or reach me directly.
+          Have a project in mind? I'm always open to discussing new
+          opportunities.
         </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">

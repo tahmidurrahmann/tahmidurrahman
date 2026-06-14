@@ -1,11 +1,9 @@
 "use client";
-
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
 import { CgExternal } from "react-icons/cg";
+import { useScrollReveal } from "../../../../hooks/useScrollReveal";
 
 const Banner = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useScrollReveal<HTMLDivElement>();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -17,25 +15,10 @@ const Banner = () => {
     }
   };
 
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const targets = el.querySelectorAll<HTMLElement>("[data-reveal]");
-    gsap.set(targets, { opacity: 0, y: 28 });
-    gsap.to(targets, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power3.out",
-      stagger: 0.12,
-      delay: 0.3,
-    });
-  }, []);
-
   return (
     <section
       id="home"
-      className="relative overflow-hidden bg-[#0a0a0f] h-[100dvh] flex items-center"
+      className="relative overflow-hidden h-[100dvh] flex items-center"
     >
       {/* Ambient glows */}
       <div className="pointer-events-none absolute -top-32 -right-20 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,rgba(198,6,120,0.18)_0%,transparent_70%)]" />

@@ -174,7 +174,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="relative bg-[#070b12] min-h-[100dvh] flex items-center py-16 md:py-24 lg:py-16 overflow-hidden"
+      className="relative min-h-[100dvh] flex items-center py-16 md:py-24 lg:py-16 overflow-hidden"
     >
       {/* Dynamic Ambient Background Lights */}
       <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-[#c60678]/5 rounded-full blur-[140px] pointer-events-none" />

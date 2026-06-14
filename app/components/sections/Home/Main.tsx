@@ -59,9 +59,5 @@ export default function Main({ children }: MainProps) {
     return () => mm.kill();
   }, []);
 
-  return (
-    <main className="xs:[&>section]:mt-[80px] lg:[&>section]:mt-[86px]">
-      {children}
-    </main>
-  );
+  return <main>{children}</main>;
 }

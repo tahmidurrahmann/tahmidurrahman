@@ -96,19 +96,40 @@ const NavBar = () => {
   };
 
   const scrollToSection = (id: string) => {
-    if (isOpen) {
-      timelineRef.current?.reverse();
-      setIsOpen(false);
-    }
-    // wait for collapse animation before scrolling on mobile
-    const delay = isOpen ? 400 : 0;
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+    const doScroll = () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      gsap.to(window, {
+        duration: 0.5,
+        ease: "power3.inOut",
+        scrollTo: { y: el, offsetY: 0 },
       });
-    }, delay);
+    };
+
+    if (isOpen) {
+      const tl = timelineRef.current;
+      tl?.eventCallback("onReverseComplete", doScroll);
+      tl?.reverse();
+      setIsOpen(false);
+    } else {
+      doScroll();
+    }
   };
+
+  // const scrollToSection = (id: string) => {
+  //   if (isOpen) {
+  //     timelineRef.current?.reverse();
+  //     setIsOpen(false);
+  //   }
+  //   // wait for collapse animation before scrolling on mobile
+  //   const delay = isOpen ? 400 : 0;
+  //   setTimeout(() => {
+  //     document.getElementById(id)?.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start",
+  //     });
+  //   }, delay);
+  // };
 
   const desktopLinks = (
     <div className="hidden md:flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.03] px-2 py-2 font-permanent text-sm text-white backdrop-blur-md">
@@ -136,10 +157,10 @@ const NavBar = () => {
   return (
     <div
       ref={headerRef}
-      className={`fixed top-0 pointer-events-none z-50 w-full overflow-hidden transition-[background-color,backdrop-filter,border-color] duration-500 md:bg-transparent md:!h-auto ${
+      className={`fixed top-0 pointer-events-none z-50 w-full overflow-hidden border-b transition-[background-color,backdrop-filter,border-color] duration-500 md:bg-transparent md:!h-auto ${
         scrolled
-          ? "py-2 md:border-b md:border-white/5 md:bg-[#0a0e16]/80 md:backdrop-blur-md"
-          : "py-4"
+          ? "py-2 border-white/5 md:bg-[#0a0e16]/80 md:backdrop-blur-md"
+          : "py-4 border-transparent"
       }`}
     >
       <div className="pointer-events-auto mx-auto max-w-screen-2xl px-6 sm:px-12 lg:px-16">

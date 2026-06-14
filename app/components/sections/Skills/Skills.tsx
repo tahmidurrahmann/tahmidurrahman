@@ -87,7 +87,7 @@ const Skills = () => {
   return (
     <section
       id="skills"
-      className="relative bg-[#070b12] min-h-[100dvh] flex items-center py-0 md:py-20 lg:py-0 overflow-hidden"
+      className="relative min-h-[100dvh] flex items-center py-0 md:py-20 lg:py-0 overflow-hidden"
     >
       {/* Background ambient lighting */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#8b2fc9]/5 rounded-full blur-[180px] pointer-events-none" />

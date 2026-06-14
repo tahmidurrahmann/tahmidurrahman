@@ -30,7 +30,7 @@ const Education = () => {
   return (
     <section
       id="education"
-      className="relative bg-[#0a0a0f] min-h-[100dvh] flex items-center"
+      className="relative min-h-[100dvh] flex items-center"
     >
       <div
         ref={ref}

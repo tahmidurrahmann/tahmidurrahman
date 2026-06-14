@@ -8,7 +8,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="icon" type="image/png" href="/favicon.png" />
       </head>
       <body
-        className="font-raleway bg-black text-white"
+        className="font-raleway bg-[#0a0a0f] text-white"
         suppressHydrationWarning
       >
         {children}
