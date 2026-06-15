@@ -2,9 +2,19 @@
 import { CgExternal } from "react-icons/cg";
 import { useScrollReveal } from "../../../../hooks/useScrollReveal";
 import Heading from "../../../shared/Heading/Heading";
+import { SiNodedotjs, SiTypescript } from "react-icons/si";
+import { TbBrandNextjs } from "react-icons/tb";
+import { BiLogoPostgresql } from "react-icons/bi";
+import { gsap } from "gsap";
+import { Draggable } from "gsap/Draggable";
+import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(Draggable);
 
 const Banner = () => {
   const containerRef = useScrollReveal<HTMLDivElement>();
+  const photoWrapRef = useRef<HTMLDivElement>(null);
+  const badgeRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -15,6 +25,71 @@ const Banner = () => {
       });
     }
   };
+
+  useEffect(() => {
+    if (!photoWrapRef.current) return;
+
+    // idle floating tween per badge, instead of Tailwind's animate-bounce
+    const floats = badgeRefs.current.map((el, i) =>
+      el
+        ? gsap.to(el, {
+            y: -8,
+            duration: 2 + i * 0.3,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+          })
+        : null,
+    );
+
+    const draggables = badgeRefs.current
+      .filter(Boolean)
+      .map((el, i) =>
+        Draggable.create(el, {
+          type: "x,y",
+          bounds: containerRef.current, // whole hero, not just the photo wrapper
+          edgeResistance: 0.65,
+          inertia: false,
+          onPress() {
+            floats[i]?.pause();
+            gsap.to(this.target, { scale: 1.15, zIndex: 50, duration: 0.15 });
+          },
+          onRelease() {
+            gsap.to(this.target, { scale: 1, zIndex: "auto", duration: 0.15 });
+            floats[i]?.resume();
+          },
+        }),
+      )
+      .flat();
+
+    return () => {
+      draggables.forEach((d) => d.kill());
+      floats.forEach((f) => f?.kill());
+    };
+  }, [containerRef]);
+
+  const badges = [
+    {
+      icon: <TbBrandNextjs size={18} className="text-white" />,
+      pos: "top-2 left-4 sm:top-4 sm:left-1.5 lg:top-6 lg:left-6",
+      size: "w-9 h-9 sm:w-11 sm:h-11",
+    },
+    {
+      icon: <BiLogoPostgresql size={22} className="text-[#336791]" />,
+      pos: "bottom-20 -left-6 sm:-left-5 lg:bottom-24 lg:-left-6",
+      size: "w-9 h-9 sm:w-11 sm:h-11",
+    },
+    {
+      icon: <SiNodedotjs size={18} className="text-[#5FA04E]" />,
+      pos: "top-1/3 -right-3 sm:-right-5 lg:-right-7",
+      size: "w-9 h-9 sm:w-11 sm:h-11",
+    },
+    {
+      icon: <SiTypescript size={16} className="text-[#3178C6]" />,
+      pos: "top-4 right-6 sm:top-6 sm:right-8",
+      size: "w-8 h-8 sm:w-10 sm:h-10",
+    },
+  ];
 
   return (
     <section
@@ -27,7 +102,7 @@ const Banner = () => {
 
       <div
         ref={containerRef}
-        className="relative z-10 w-full max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-20 pt-20 pb-8 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24"
+        className="relative z-10 w-full max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-20 pt-20 pb-8 flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-24"
       >
         {/* Left */}
         <div className="flex flex-col gap-5 lg:max-w-[560px]">
@@ -135,7 +210,11 @@ const Banner = () => {
         </div>
 
         {/* Right: Photo */}
-        <div data-reveal className="relative flex-shrink-0">
+        <div
+          data-reveal
+          ref={photoWrapRef}
+          className="relative flex-shrink-0 touch-pan-y"
+        >
           <svg
             className="absolute -inset-2 w-[calc(100%+16px)] h-[calc(100%+16px)] animate-[spin_10s_linear_infinite]"
             viewBox="0 0 216 216"
@@ -166,15 +245,29 @@ const Banner = () => {
               strokeLinecap="round"
             />
           </svg>
+
           <img
             src="/programmer-working.webp"
             alt="programmer-working-on-a-desktop"
-            className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full object-cover border-[3px] border-[#0a0a0f]"
+            className="w-56 h-56 sm:w-72 sm:h-72 lg:w-96 lg:h-96 rounded-full object-cover border-[3px] border-[#0a0a0f]"
           />
-          <div className="absolute bottom-2 -right-4 flex items-center gap-1.5 bg-[#0a0a0f] border border-white/10 rounded-full px-3 py-1.5 text-[11px] text-[#a0a0b0] font-medium whitespace-nowrap">
+
+          {badges.map((b, i) => (
+            <div
+              key={i}
+              ref={(el) => {
+                badgeRefs.current[i] = el;
+              }}
+              className={`absolute ${b.pos} ${b.size} flex items-center justify-center rounded-full bg-[#0a0a0f] border border-white/10 shadow-lg cursor-grab active:cursor-grabbing`}
+            >
+              {b.icon}
+            </div>
+          ))}
+
+          {/* <div className="absolute bottom-2 -right-4 flex items-center gap-1.5 bg-[#0a0a0f] border border-white/10 rounded-full px-3 py-1.5 text-[11px] text-[#a0a0b0] font-medium whitespace-nowrap">
             <span className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0 animate-pulse" />
             On a Project via YouthLink
-          </div>
+          </div> */}
         </div>
       </div>
 

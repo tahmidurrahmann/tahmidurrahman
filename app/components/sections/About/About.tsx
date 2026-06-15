@@ -52,13 +52,13 @@ const About = () => {
 
       <div
         ref={ref}
-        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-0 md:gap-16 lg:gap-20 relative z-10"
+        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 flex flex-col lg:flex-row items-center justify-between gap-0 md:gap-8 lg:gap-20 relative z-10"
       >
         {/* Photo Container with Elegant Glass & Border Hover Effect */}
         <div data-reveal className="relative group flex-shrink-0">
           <div className="absolute -inset-4 bg-gradient-to-tr from-[#c60678]/30 to-[#8b2fc9]/30 rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-500" />
 
-          <div className="hidden md:flex relative w-64 h-64 sm:w-80 sm:h-80 rounded-2xl overflow-hidden border border-white/10 bg-slate-900 p-2 group-hover:border-white/20 transition duration-300">
+          <div className="hidden md:flex relative sm:w-96 sm:h-64 lg:h-80 lg:w-80 xl:h-[400px] xl:w-[420px] rounded-2xl overflow-hidden border border-white/10 bg-slate-900 p-2 group-hover:border-white/20 transition duration-300">
             <img
               src="/tahmidurrahman-about.jpg"
               alt="Tahmidur Rahman Image"
@@ -72,7 +72,7 @@ const About = () => {
           <Heading headingText="About me" />
           <h2
             data-reveal
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight"
+            className="text-3xl lg:text-5xl font-black text-white leading-tight tracking-tight"
           >
             Building things that{" "}
             <span className="bg-gradient-to-r from-[#c60678] via-[#a81cb3] to-[#8b2fc9] bg-clip-text text-transparent">
@@ -82,7 +82,7 @@ const About = () => {
 
           <p
             data-reveal
-            className="text-gray-400 leading-relaxed text-sm sm:text-base font-normal"
+            className="text-gray-400 leading-relaxed text-sm lg:text-base font-normal"
           >
             I'm a full-stack developer with 2 years of experience taking
             projects from idea to production. I work across the entire stack,
