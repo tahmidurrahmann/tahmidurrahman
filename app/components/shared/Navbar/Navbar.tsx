@@ -150,48 +150,50 @@ const NavBar = () => {
   );
 
   return (
-    <div
-      ref={headerRef}
-      className={`fixed top-0 pointer-events-none z-50 w-full overflow-hidden md:border-b transition-[background-color,backdrop-filter,border-color] duration-500 md:bg-transparent md:!h-auto ${
-        scrolled
-          ? "py-2 border-white/5 md:bg-[#0a0e16]/80 md:backdrop-blur-md"
-          : "py-4 border-transparent"
-      }`}
-    >
-      <div className="pointer-events-auto relative z-50 mx-auto max-w-screen-2xl px-6 sm:px-12 lg:px-16">
-        <div className="flex items-center justify-between">
-          <button
-            type="button"
-            onClick={() => scrollToSection("home")}
-            className="flex items-center gap-1 font-permanent text-xl text-white transition-transform duration-300 hover:scale-105 sm:text-2xl md:text-3xl"
-          >
-            Tahmid
-          </button>
+    <>
+      <div
+        ref={headerRef}
+        className={`fixed top-0 pointer-events-none z-50 w-full overflow-hidden border-b transition-[background-color,backdrop-filter,border-color] duration-500 md:bg-transparent md:!h-auto ${
+          scrolled
+            ? "py-2 border-white/5 bg-[#0a0e16]/80 backdrop-blur-md"
+            : "py-4 border-transparent"
+        }`}
+      >
+        <div className="pointer-events-auto relative z-50 mx-auto max-w-screen-2xl px-6 sm:px-12 lg:px-16">
+          <div className="flex items-center justify-between">
+            <button
+              type="button"
+              onClick={() => scrollToSection("home")}
+              className="flex items-center gap-1 font-permanent text-xl text-white transition-transform duration-300 hover:scale-105 sm:text-2xl md:text-3xl"
+            >
+              Tahmid
+            </button>
 
-          {desktopLinks}
+            {desktopLinks}
 
-          {/* Hamburger / Close button */}
-          <button
-            type="button"
-            aria-label={
-              isOpen ? "Close navigation menu" : "Open navigation menu"
-            }
-            onClick={toggleMenu}
-            className="relative z-10 flex h-5 w-5 flex-col items-end justify-center gap-[5px] md:hidden"
-          >
-            <span
-              ref={topLineRef}
-              className="block h-[1.5px] w-3.5 origin-center rounded-full bg-white"
-            />
-            <span
-              ref={middleLineRef}
-              className="block h-[1.5px] w-5 origin-center rounded-full bg-white"
-            />
-            <span
-              ref={bottomLineRef}
-              className="block h-[1.5px] w-2.5 origin-center rounded-full bg-white"
-            />
-          </button>
+            {/* Hamburger / Close button */}
+            <button
+              type="button"
+              aria-label={
+                isOpen ? "Close navigation menu" : "Open navigation menu"
+              }
+              onClick={toggleMenu}
+              className="relative z-10 flex h-5 w-5 flex-col items-end justify-center gap-[5px] md:hidden"
+            >
+              <span
+                ref={topLineRef}
+                className="block h-[1.5px] w-3.5 origin-center rounded-full bg-white"
+              />
+              <span
+                ref={middleLineRef}
+                className="block h-[1.5px] w-5 origin-center rounded-full bg-white"
+              />
+              <span
+                ref={bottomLineRef}
+                className="block h-[1.5px] w-2.5 origin-center rounded-full bg-white"
+              />
+            </button>
+          </div>
         </div>
       </div>
 
@@ -224,7 +226,7 @@ const NavBar = () => {
           })}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
