@@ -20,6 +20,7 @@ const NavBar = () => {
   const { activeId, scrolled } = useActiveSection(sectionIds);
 
   const headerRef = useRef<HTMLDivElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
   const navWrapperRef = useRef<HTMLDivElement>(null);
   const topLineRef = useRef<HTMLSpanElement>(null);
   const middleLineRef = useRef<HTMLSpanElement>(null);
@@ -31,6 +32,7 @@ const NavBar = () => {
   useLayoutEffect(() => {
     if (
       !headerRef.current ||
+      !overlayRef.current ||
       !navWrapperRef.current ||
       !topLineRef.current ||
       !middleLineRef.current ||
@@ -39,17 +41,24 @@ const NavBar = () => {
       return;
     }
 
+    gsap.set(overlayRef.current, {
+      autoAlpha: 0,
+      pointerEvents: "none",
+      backdropFilter: "blur(12px)", // applied once, not animated
+      backgroundColor: "#0a0e16cc",
+    });
+
     const tl = gsap.timeline({
       paused: true,
       reversed: true,
       defaults: { duration: 0.35, ease: "power3.inOut" },
     });
 
-    tl.to(headerRef.current, {
-      height: "100vh",
-      backgroundColor: "#0a0e16",
-      backdropFilter: "blur(0px)",
-    })
+    tl.set(overlayRef.current, { pointerEvents: "auto" })
+      .to(overlayRef.current, {
+        autoAlpha: 1,
+        duration: 0.25,
+      })
       .fromTo(
         topLineRef.current,
         { rotate: 0, y: 0, width: "0.875rem" },
@@ -91,6 +100,9 @@ const NavBar = () => {
       tl.play();
     } else {
       tl.reverse();
+      tl.eventCallback("onReverseComplete", () => {
+        gsap.set(overlayRef.current, { pointerEvents: "none" });
+      });
     }
     setIsOpen((prev) => !prev);
   };
@@ -98,16 +110,20 @@ const NavBar = () => {
   const scrollToSection = (id: string) => {
     if (isOpen) {
       timelineRef.current?.reverse();
-      setIsOpen(false);
-    }
-    // wait for collapse animation before scrolling on mobile
-    const delay = isOpen ? 400 : 0;
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
+      timelineRef.current?.eventCallback("onReverseComplete", () => {
+        gsap.set(overlayRef.current, { pointerEvents: "none" });
+        document.getElementById(id)?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       });
-    }, delay);
+      setIsOpen(false);
+      return;
+    }
+    document.getElementById(id)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
   };
 
   const desktopLinks = (
@@ -142,7 +158,7 @@ const NavBar = () => {
           : "py-4 border-transparent"
       }`}
     >
-      <div className="pointer-events-auto mx-auto max-w-screen-2xl px-6 sm:px-12 lg:px-16">
+      <div className="pointer-events-auto relative z-50 mx-auto max-w-screen-2xl px-6 sm:px-12 lg:px-16">
         <div className="flex items-center justify-between">
           <button
             type="button"
@@ -181,25 +197,32 @@ const NavBar = () => {
 
       {/* Full-screen mobile nav, revealed as header expands */}
       <div
-        ref={navWrapperRef}
-        className="pointer-events-auto invisible flex h-[calc(100vh-5rem)] flex-col items-center justify-center gap-8 md:hidden"
+        ref={overlayRef}
+        className="fixed inset-0 z-40 flex h-screen w-screen items-center justify-center md:hidden"
       >
-        {links.map((link) => {
-          const isActive = activeId === link.id;
-          return (
-            <button
-              key={link.id}
-              type="button"
-              data-nav-link
-              onClick={() => scrollToSection(link.id)}
-              className={`font-permanent text-md transition-colors duration-300 ${
-                isActive ? "text-[#c60678]" : "text-white hover:text-[#c60678]"
-              }`}
-            >
-              {link.label}
-            </button>
-          );
-        })}
+        <div
+          ref={navWrapperRef}
+          className="flex flex-col items-center justify-center gap-8"
+        >
+          {links.map((link) => {
+            const isActive = activeId === link.id;
+            return (
+              <button
+                key={link.id}
+                type="button"
+                data-nav-link
+                onClick={() => scrollToSection(link.id)}
+                className={`font-permanent text-md transition-colors duration-300 ${
+                  isActive
+                    ? "text-[#c60678]"
+                    : "text-white hover:text-[#c60678]"
+                }`}
+              >
+                {link.label}
+              </button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
