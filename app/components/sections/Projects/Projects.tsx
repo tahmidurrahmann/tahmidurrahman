@@ -3,6 +3,7 @@ import { MdOutlineLiveTv } from "react-icons/md";
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
 import { useEffect, useRef, useState } from "react";
 import Heading from "../../shared/Heading/Heading";
+import Image from "next/image";
 
 type Project = {
   title: string;
@@ -18,8 +19,7 @@ const projects: Project[] = [
     title: "The Glass House",
     description:
       "Building Management System with remote property management. User, Member and Admin dashboards with tailored experiences including profile views, payment functionalities, announcements and admin-exclusive controls.",
-    image:
-      "https://i.ibb.co/D8k2qG3/set-mockup-computer-laptop-tablet-smartphone-realistic-isolated-templates-free-vector-1.jpg",
+    image: "/glass-house.png",
     tags: [
       "JavaScript",
       "React",
@@ -56,8 +56,7 @@ const projects: Project[] = [
     title: "Study Together",
     description:
       "Collaborative learning platform allowing users to create, submit, and grade assignments within a friendly community. Supports individual submissions with feedback and grading workflows.",
-    image:
-      "https://i.ibb.co/1LHTm76/set-mockup-computer-laptop-tablet-smartphone-realistic-isolated-templates-free-vector-2.jpg",
+    image: "/study-together.png",
     tags: [
       "JavaScript",
       "React",
@@ -94,8 +93,7 @@ const projects: Project[] = [
     title: "Dream Tech",
     description:
       "Brand shop focused on technology and electronics. Features brand-specific product pages, cart management, and multi-provider authentication including email/password and social login.",
-    image:
-      "https://i.ibb.co/qnddByG/set-mockup-computer-laptop-tablet-smartphone-realistic-isolated-templates-free-vector.jpg",
+    image: "/dream-tech.png",
     tags: [
       "JavaScript",
       "React",
@@ -177,33 +175,38 @@ const Projects = () => {
       id="projects"
       className="relative min-h-[100dvh] flex items-center py-16 md:py-24 lg:py-16 overflow-hidden"
     >
-      {/* Dynamic Ambient Background Lights */}
-      <div className="absolute top-1/3 right-10 w-[450px] h-[450px] bg-[#c60678]/5 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[450px] h-[450px] bg-[#8b2fc9]/5 rounded-full blur-[140px] pointer-events-none" />
-
       <div
         ref={ref}
-        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 relative z-10 pt-6 lg:pt-20"
+        className="w-full max-w-screen-2xl mx-auto px-6 sm:px-12 lg:px-16 relative z-10 pt-6 lg:pt-12"
       >
         {/* Section Header */}
-        <div className="mb-12">
-          <Heading headingText="Selected work" />
+        <div className="mb-12 flex items-end justify-between flex-wrap gap-4">
+          <div className="flex flex-col gap-5">
+            <Heading headingText="Selected work" />
+            <h2
+              data-reveal
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight"
+            >
+              Featured{" "}
+              <span className="bg-gradient-to-r from-[#c60678] via-[#a81cb3] to-[#8b2fc9] bg-clip-text text-transparent">
+                Case Studies.
+              </span>
+            </h2>
+          </div>
 
-          <h2
+          <div
             data-reveal
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight tracking-tight mt-5"
+            className="font-mono text-xs text-gray-500 tracking-[0.2em] uppercase"
           >
-            Featured{" "}
-            <span className="bg-gradient-to-r from-[#c60678] via-[#a81cb3] to-[#8b2fc9] bg-clip-text text-transparent">
-              Case Studies.
-            </span>
-          </h2>
+            Index — {String(activeIdx + 1).padStart(2, "0")} /{" "}
+            {String(projects.length).padStart(2, "0")}
+          </div>
         </div>
 
         {/* Carousel Outer Wrapper */}
         <div
           data-reveal
-          className="overflow-hidden rounded-3xl border border-white/[0.06] bg-white/[0.01] backdrop-blur-md shadow-2xl cursor-grab active:cursor-grabbing"
+          className="overflow-hidden rounded-2xl border border-white/10 bg-[#0d121c] cursor-grab active:cursor-grabbing"
           onMouseDown={onMouseDown}
           onMouseMove={onMouseMove}
           onTouchStart={onTouchStart}
@@ -216,80 +219,59 @@ const Projects = () => {
               transition: "transform 600ms cubic-bezier(0.16, 1, 0.3, 1)",
             }}
           >
-            {projects.map((p) => (
+            {projects.map((p, i) => (
               <article
                 key={p.title}
-                className="min-w-full grid grid-cols-1 lg:grid-cols-12 overflow-hidden"
+                className="min-w-full grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 overflow-hidden p-5 sm:p-8 lg:p-10 items-center"
               >
-                {/* Image Grid Side */}
-                <div className="lg:col-span-5 overflow-hidden h-60 sm:h-72 lg:h-auto relative group bg-slate-9ated border-r border-white/[0.04]">
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#070b12]/80 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-[#070b12]/20 z-10" />
-                  <img
+                {/* Image Side */}
+                <div className="lg:col-span-5 h-48 sm:h-60 lg:h-72 relative pointer-events-none select-none">
+                  <Image
+                    className="object-contain"
                     src={p.image}
-                    alt={p.title}
-                    className="w-full h-full object-cover pointer-events-none group-hover:scale-[1.02] transition duration-700"
-                    draggable={false}
+                    alt={`${p.title} Mockup`}
+                    fill
+                    sizes="1200px"
                   />
                 </div>
 
-                {/* Content Details Side */}
-                <div className="lg:col-span-7 p-6 sm:p-10 lg:p-12 flex flex-col gap-6 justify-center">
-                  <div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-3">
-                      {p.title}
-                    </h3>
-                    <p className="text-gray-400 text-xs sm:text-sm leading-relaxed font-normal">
-                      {p.description}
-                    </p>
-                  </div>
+                {/* Content Side */}
+                <div className="lg:col-span-7 flex flex-col gap-3 justify-center">
+                  <span className="w-fit px-2.5 py-1 text-xs font-medium rounded-md text-[#c60678] bg-[#c60678]/10 border border-[#c60678]/20">
+                    Project {i + 1}
+                  </span>
 
-                  {/* Highlights Grid */}
-                  <div className="flex flex-wrap gap-2">
-                    {p.highlights.map((h) => (
-                      <div
-                        key={h}
-                        className="flex items-center gap-2 text-[11px] font-medium text-gray-300 bg-white/[0.03] border border-white/[0.05] px-3 py-1.5 rounded-lg"
-                      >
-                        <svg
-                          className="w-3 h-3 text-[#c60678]"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          strokeWidth="3"
-                        >
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                        {h}
-                      </div>
-                    ))}
-                  </div>
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                    {p.title}
+                  </h3>
 
-                  {/* Tech Stack Tags */}
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {p.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-[10px] font-semibold px-2.5 py-1 rounded-md bg-[#c60678]/5 border border-[#c60678]/15 text-[#c60678]"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="text-gray-400 text-sm leading-relaxed line-clamp-3">
+                    {p.description}
+                  </p>
 
-                  {/* Action Links Bar */}
-                  <div className="flex flex-wrap items-center gap-3 pt-5 border-t border-white/[0.05]">
-                    {p.links.map((link) => (
+                  <p className="text-gray-400 text-sm">
+                    <span className="font-semibold text-gray-300">
+                      Tech Stack:{" "}
+                    </span>
+                    {p.tags.join(", ")}
+                  </p>
+
+                  {/* Buttons */}
+                  <div className="flex flex-wrap gap-3 pt-3">
+                    {p.links.map((link, idx) => (
                       <a
                         key={link.label}
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-xs font-semibold text-gray-400 hover:text-white bg-white/[0.02] hover:bg-white/[0.06] border border-white/[0.05] hover:border-white/[0.15] px-3.5 py-2 rounded-xl transition duration-200"
                         onClick={(e) => e.stopPropagation()}
+                        className={
+                          idx === 0
+                            ? "inline-flex items-center gap-2 text-sm font-semibold text-white bg-[#c60678] hover:bg-[#a8055f] px-4 py-2 rounded-lg transition duration-200"
+                            : "inline-flex items-center gap-2 text-sm font-semibold text-gray-300 border border-white/10 hover:border-[#c60678]/40 hover:text-[#c60678] px-4 py-2 rounded-lg transition duration-200"
+                        }
                       >
-                        <span className="text-gray-400 group-hover:text-white">
-                          {link.icon}
-                        </span>
+                        {link.icon}
                         {link.label}
                       </a>
                     ))}
@@ -300,38 +282,38 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Dynamic Nav Control UI */}
+        {/* Index Nav */}
         <div
           data-reveal
-          className="flex items-center justify-between mt-6 px-1"
+          className="flex items-center justify-between mt-6 flex-wrap gap-4"
         >
-          {/* Slider Indicators */}
-          <div className="flex gap-2">
-            {projects.map((_, i) => (
+          <div className="flex gap-6 font-mono text-xs sm:text-sm flex-wrap">
+            {projects.map((p, i) => (
               <button
-                key={i}
+                key={p.title}
                 onClick={() => goTo(i)}
-                aria-label={`Go to project ${i + 1}`}
-                className={`h-1 rounded-full transition-all duration-300 ${
+                className={`tracking-wide transition-colors duration-200 ${
                   i === activeIdx
-                    ? "w-10 bg-gradient-to-r from-[#c60678] to-[#8b2fc9]"
-                    : "w-3 bg-white/10 hover:bg-white/30"
+                    ? "text-white"
+                    : "text-gray-600 hover:text-gray-400"
                 }`}
-              />
+              >
+                0{i + 1}
+                <span className="hidden sm:inline"> — {p.title}</span>
+              </button>
             ))}
           </div>
 
-          {/* Nav Buttons */}
-          <div className="flex gap-2.5">
+          <div className="flex gap-2">
             <button
               onClick={() => goTo(activeIdx - 1)}
               disabled={activeIdx === 0}
               aria-label="Previous project"
-              className="w-10 h-10 rounded-xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm flex items-center justify-center text-gray-400 hover:border-[#c60678]/40 hover:text-[#c60678] disabled:opacity-20 disabled:cursor-not-allowed transition duration-200"
+              className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:border-[#c60678]/40 hover:text-[#c60678] disabled:opacity-20 disabled:cursor-not-allowed transition duration-200"
             >
               <svg
-                width="16"
-                height="16"
+                width="14"
+                height="14"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -344,11 +326,11 @@ const Projects = () => {
               onClick={() => goTo(activeIdx + 1)}
               disabled={activeIdx === projects.length - 1}
               aria-label="Next project"
-              className="w-10 h-10 rounded-xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm flex items-center justify-center text-gray-400 hover:border-[#c60678]/40 hover:text-[#c60678] disabled:opacity-20 disabled:cursor-not-allowed transition duration-200"
+              className="w-9 h-9 rounded-lg border border-white/10 flex items-center justify-center text-gray-400 hover:border-[#c60678]/40 hover:text-[#c60678] disabled:opacity-20 disabled:cursor-not-allowed transition duration-200"
             >
               <svg
-                width="16"
-                height="16"
+                width="14"
+                height="14"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"

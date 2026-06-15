@@ -167,8 +167,8 @@ const Banner = () => {
             />
           </svg>
           <img
-            src="https://i.ibb.co/Nr7XXRX/270224004-3140648616261730-993033304660391605-n.jpg"
-            alt="Tahmidur Rahman"
+            src="/programmer-working.webp"
+            alt="programmer-working-on-a-desktop"
             className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full object-cover border-[3px] border-[#0a0a0f]"
           />
           <div className="absolute bottom-2 -right-4 flex items-center gap-1.5 bg-[#0a0a0f] border border-white/10 rounded-full px-3 py-1.5 text-[11px] text-[#a0a0b0] font-medium whitespace-nowrap">

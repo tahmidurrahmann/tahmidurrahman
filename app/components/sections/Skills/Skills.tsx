@@ -9,37 +9,37 @@ const skillCategories: SkillCategory[] = [
     title: "Frontend",
     skills: [
       {
-        src: "https://i.ibb.co/k0wwS3z/HTML.png",
+        src: "/HTML.png",
         alt: "HTML",
         docs: "https://developer.mozilla.org/en-US/docs/Web/HTML",
       },
       {
-        src: "https://i.ibb.co/3WKV4vK/css.png",
+        src: "/css.png",
         alt: "CSS",
         docs: "https://developer.mozilla.org/en-US/docs/Web/CSS",
       },
       {
-        src: "https://i.ibb.co/8247qLL/Java-Script.png",
+        src: "/JavaScript.png",
         alt: "JavaScript",
         docs: "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
       },
       {
-        src: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1781437420/Typescript.svg_t934ds.png",
+        src: "/typescript.png",
         alt: "TypeScript",
         docs: "https://www.typescriptlang.org/docs",
       },
       {
-        src: "https://i.ibb.co/0yzRCQW/react.png",
+        src: "/react.png",
         alt: "React",
         docs: "https://react.dev",
       },
       {
-        src: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1781437597/nextjs-icon-dark-background_hgictm.png",
+        src: "/nextjs.png",
         alt: "Next.js",
         docs: "https://nextjs.org/docs",
       },
       {
-        src: "https://i.ibb.co/Bs3RD3Z/tailwind.png",
+        src: "/tailwind.png",
         alt: "Tailwind",
         docs: "https://tailwindcss.com/docs",
       },
@@ -49,12 +49,12 @@ const skillCategories: SkillCategory[] = [
     title: "Backend",
     skills: [
       {
-        src: "https://i.ibb.co/VM0Nntk/node.png",
+        src: "/node.png",
         alt: "Node.js",
         docs: "https://nodejs.org/en/docs",
       },
       {
-        src: "https://i.ibb.co/2NHC17p/express.png",
+        src: "/express.png",
         alt: "Express",
         docs: "https://expressjs.com",
       },
@@ -64,17 +64,17 @@ const skillCategories: SkillCategory[] = [
     title: "Database & Cloud",
     skills: [
       {
-        src: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1781437420/images_1_bb49iy.png",
+        src: "/postgresql.png",
         alt: "PostgreSQL",
         docs: "https://www.postgresql.org/docs",
       },
       {
-        src: "https://i.ibb.co/BcgLQ58/mongo.png",
+        src: "/mongo.png",
         alt: "MongoDB",
         docs: "https://www.mongodb.com/docs",
       },
       {
-        src: "https://i.ibb.co/1X22qrB/firebase.png",
+        src: "/firebase.png",
         alt: "Firebase",
         docs: "https://firebase.google.com/docs",
       },

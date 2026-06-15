@@ -60,8 +60,8 @@ const About = () => {
 
           <div className="hidden md:flex relative w-64 h-64 sm:w-80 sm:h-80 rounded-2xl overflow-hidden border border-white/10 bg-slate-900 p-2 group-hover:border-white/20 transition duration-300">
             <img
-              src="https://res.cloudinary.com/tahmidur-rahman/image/upload/v1781434505/316938397-3409644562695466-8999828180897054437-n_dmodpj.jpg"
-              alt="Tahmidur Rahman"
+              src="/tahmidurrahman-about.jpg"
+              alt="Tahmidur Rahman Image"
               className="w-full h-full object-cover rounded-xl grayscale group-hover:grayscale-0 transition duration-500 scale-100 group-hover:scale-105"
             />
           </div>
