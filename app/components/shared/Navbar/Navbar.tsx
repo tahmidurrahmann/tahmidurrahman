@@ -51,13 +51,13 @@ const NavBar = () => {
     const tl = gsap.timeline({
       paused: true,
       reversed: true,
-      defaults: { duration: 0.35, ease: "power3.inOut" },
+      defaults: { duration: 0.2, ease: "power2.inOut" },
     });
 
     tl.set(overlayRef.current, { pointerEvents: "auto" })
       .to(overlayRef.current, {
         autoAlpha: 1,
-        duration: 0.25,
+        duration: 0.15,
       })
       .fromTo(
         topLineRef.current,
@@ -80,8 +80,8 @@ const NavBar = () => {
       )
       .fromTo(
         navWrapperRef.current.querySelectorAll("[data-nav-link]"),
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.35, stagger: 0.06 },
+        { opacity: 0, y: 16 },
+        { opacity: 1, y: 0, duration: 0.2, stagger: 0.025 },
         "<",
       );
 
@@ -198,7 +198,7 @@ const NavBar = () => {
       {/* Full-screen mobile nav, revealed as header expands */}
       <div
         ref={overlayRef}
-        className="fixed inset-0 z-40 flex h-screen w-screen items-center justify-center md:hidden"
+        className="invisible fixed inset-0 z-40 flex h-screen w-screen items-center justify-center opacity-0 md:hidden"
       >
         <div
           ref={navWrapperRef}
