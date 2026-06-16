@@ -1,16 +1,38 @@
-import { FaMessage } from "react-icons/fa6";
 import emailjs from "@emailjs/browser";
 import React, { useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { useScrollReveal } from "../../../hooks/useScrollReveal";
 import Heading from "../../shared/Heading/Heading";
+import { FaEnvelope, FaTelegramPlane, FaUser } from "react-icons/fa";
+import { FaMessage } from "react-icons/fa6";
 
 const inputClass =
-  "w-full bg-[#0a0a0f] border border-white/10 rounded-lg px-4 py-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#c60678]/60 transition-colors duration-200";
+  "w-full bg-white/[0.04] border border-white/[0.08] rounded-[10px] pl-[38px] pr-4 py-[11px] text-sm text-white placeholder-white/20 outline-none focus:border-[#c60678]/50 focus:bg-[#c60678]/[0.04] transition-all duration-200";
+
+// Wrapper for each field
+const Field = ({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) => (
+  <div className="flex flex-col gap-1.5">
+    <label className="text-[11px] font-medium text-white/40 uppercase tracking-widest">
+      {label}
+    </label>
+    {children}
+  </div>
+);
+
+// Input with icon
+const iconClass =
+  "absolute left-3 top-1/2 -translate-y-1/2 text-white/20 peer-focus:text-[#c60678]/60 transition-colors";
 
 const Contact = () => {
   const form = useRef<HTMLFormElement>(null);
   const ref = useScrollReveal<HTMLDivElement>({ stagger: 0.1 });
+  const [charCount, setCharCount] = useState(0);
   const [isSending, setIsSending] = useState(false);
 
   const sendEmail = (e: React.SyntheticEvent<HTMLFormElement>) => {
@@ -77,36 +99,60 @@ const Contact = () => {
               onSubmit={sendEmail}
               className="flex flex-col gap-4"
             >
-              <div className="flex justify-between items-center gap-6">
-                <input
-                  type="text"
-                  name="user_name"
-                  placeholder="Name"
-                  className={inputClass}
-                  required
-                />
-                <input
-                  type="email"
-                  name="user_email"
-                  placeholder="Email"
-                  className={inputClass}
-                  required
-                />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+                <Field label="Name">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      name="user_name"
+                      placeholder="Tahmidur Rahman"
+                      className={`peer ${inputClass}`}
+                      required
+                    />
+                    <FaUser size={13} className={iconClass} />
+                  </div>
+                </Field>
+                <Field label="Email address">
+                  <div className="relative">
+                    <input
+                      type="email"
+                      name="user_email"
+                      placeholder="you@example.com"
+                      className={`peer ${inputClass}`}
+                      required
+                    />
+                    <FaEnvelope size={13} className={iconClass} />
+                  </div>
+                </Field>
               </div>
-              <textarea
-                name="message"
-                rows={10}
-                placeholder="Message"
-                className={`${inputClass} resize-none`}
-                required
-              />
+
+              <Field label="Message">
+                <div className="relative">
+                  <textarea
+                    name="message"
+                    rows={8}
+                    maxLength={500}
+                    placeholder="Tell me about your project..."
+                    className={`peer ${inputClass} resize-none pt-[11px] !translate-y-0`}
+                    onChange={(e) => setCharCount(e.target.value.length)}
+                    required
+                  />
+                  <FaMessage
+                    size={13}
+                    className="absolute left-3 top-[14px] text-white/20 peer-focus:text-[#c60678]/60 transition-colors"
+                  />
+                </div>
+                <span className="text-[11px] text-white/20 text-right">
+                  {charCount} / 500
+                </span>
+              </Field>
               <button
                 type="submit"
                 disabled={isSending}
-                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#c60678] to-[#8b2fc9] hover:from-[#b0056a] hover:to-[#7a25b3] text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:-translate-y-px disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto shadow-lg shadow-[#c60678]/10"
+                className="w-fit inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#c60678] to-[#8b2fc9] hover:from-[#b0056a] hover:to-[#7a25b3] text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:-translate-y-px disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-[#c60678]/10"
               >
-                <FaMessage
-                  size={14}
+                <FaTelegramPlane
+                  size={18}
                   className={isSending ? "animate-pulse" : ""}
                 />
                 {isSending ? "Sending..." : "Send Message"}
