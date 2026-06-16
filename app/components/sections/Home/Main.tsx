@@ -17,7 +17,7 @@ export default function Main({ children }: MainProps) {
     const headerEl = document.querySelector<HTMLElement>("header");
     const headerOffsetHeight = headerEl?.offsetHeight ?? 0;
 
-    mm.add("(min-width: 768px)", () => {
+    mm.add("(min-width: 1024px)", () => {
       document.body.style.overflow = "hidden";
 
       const sections = gsap.utils.toArray<Element>("main > section");

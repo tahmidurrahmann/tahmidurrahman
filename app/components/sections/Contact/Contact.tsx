@@ -5,6 +5,10 @@ import { useScrollReveal } from "../../../hooks/useScrollReveal";
 import Heading from "../../shared/Heading/Heading";
 import { FaEnvelope, FaTelegramPlane, FaUser } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
+import { AiFillPhone } from "react-icons/ai";
+import { FaLinkedin, FaGithub } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import Link from "next/link";
 
 const inputClass =
   "w-full bg-white/[0.04] border border-white/[0.08] rounded-[10px] pl-[38px] pr-4 py-[11px] text-sm text-white placeholder-white/20 outline-none focus:border-[#c60678]/50 focus:bg-[#c60678]/[0.04] transition-all duration-200";
@@ -72,7 +76,7 @@ const Contact = () => {
       {/* Main Content Body */}
       <div
         ref={ref}
-        className="w-full max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-20 pt-28 pb-16 flex-1 flex flex-col justify-center relative z-10"
+        className="w-full max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-20 pt-24 pb-12 xl:pt-28 xl:pb-16 flex-1 flex flex-col justify-center relative z-10"
       >
         <Heading headingText="Get in touch" />
 
@@ -86,26 +90,22 @@ const Contact = () => {
           </span>
         </h2>
 
-        <p data-reveal className="text-gray-400 text-sm mb-12 max-w-md">
+        <p data-reveal className="text-gray-400 text-sm mb-6 lg:mb-12 max-w-md">
           Have a project in mind? I'm always open to discussing new
           opportunities.
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-32">
           {/* Form */}
           <div data-reveal>
-            <form
-              ref={form}
-              onSubmit={sendEmail}
-              className="flex flex-col gap-4"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <form ref={form} onSubmit={sendEmail} className="flex flex-col">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-3.5">
                 <Field label="Name">
                   <div className="relative">
                     <input
                       type="text"
                       name="user_name"
-                      placeholder="Tahmidur Rahman"
+                      placeholder="John Doe"
                       className={`peer ${inputClass}`}
                       required
                     />
@@ -126,30 +126,32 @@ const Contact = () => {
                 </Field>
               </div>
 
-              <Field label="Message">
-                <div className="relative">
-                  <textarea
-                    name="message"
-                    rows={8}
-                    maxLength={500}
-                    placeholder="Tell me about your project..."
-                    className={`peer ${inputClass} resize-none pt-[11px] !translate-y-0`}
-                    onChange={(e) => setCharCount(e.target.value.length)}
-                    required
-                  />
-                  <FaMessage
-                    size={13}
-                    className="absolute left-3 top-[14px] text-white/20 peer-focus:text-[#c60678]/60 transition-colors"
-                  />
-                </div>
-                <span className="text-[11px] text-white/20 text-right">
-                  {charCount} / 500
-                </span>
-              </Field>
+              <div className="mt-4">
+                <Field label="Message">
+                  <div className="relative">
+                    <textarea
+                      name="message"
+                      rows={8}
+                      maxLength={500}
+                      placeholder="Tell me about your project..."
+                      className={`peer ${inputClass} resize-none pt-[11px] !translate-y-0`}
+                      onChange={(e) => setCharCount(e.target.value.length)}
+                      required
+                    />
+                    <FaMessage
+                      size={13}
+                      className="absolute left-3 top-[14px] text-white/20 peer-focus:text-[#c60678]/60 transition-colors"
+                    />
+                  </div>
+                  <span className="text-[11px] text-white/20 text-right">
+                    {charCount} / 500
+                  </span>
+                </Field>
+              </div>
               <button
                 type="submit"
                 disabled={isSending}
-                className="w-fit inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#c60678] to-[#8b2fc9] hover:from-[#b0056a] hover:to-[#7a25b3] text-white text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:-translate-y-px disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-[#c60678]/10"
+                className="w-fit inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#c60678] to-[#8b2fc9] hover:from-[#b0056a] hover:to-[#7a25b3] text-white text-xs lg:text-sm font-semibold px-6 py-3 rounded-lg transition-all duration-200 hover:-translate-y-px disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-[#c60678]/10"
               >
                 <FaTelegramPlane
                   size={18}
@@ -160,21 +162,50 @@ const Contact = () => {
             </form>
           </div>
 
-          {/* Map */}
-          <div
-            data-reveal
-            className="rounded-2xl overflow-hidden border border-white/10 h-[360px] lg:h-auto min-h-[340px]"
-          >
-            <iframe
-              title="Tahmidur Rahman location map"
-              width="100%"
-              height="100%"
-              src="https://maps.google.com/maps?width=100%25&height=600&hl=en&q=28/2%20Shamibagh,%20dhaka+(Tahmidur%20Rahman)&t=&z=14&ie=UTF8&iwloc=B&output=embed"
-              className="border-0 grayscale opacity-75 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+          {/* Card */}
+          <div className="space-y-8 sm:space-y-16 xl:space-y-16 3xl:space-y-20 dpr-lg:space-y-12">
+            <div className="flex flex-col items-start justify-start gap-3">
+              <h1 className="text-xl lg:text-2xl text-white font-bold">
+                Get in touch another way
+              </h1>
+              <p className="text-gray-400 text-sm lg:text-base">
+                If you wish, you can contact me using one of following methods
+                as well.
+              </p>
+            </div>
+            {/* Contact Information */}
+            <div className="space-y-8 sm:space-y-9 dpr-xl:space-y-6">
+              <div className="flex items-center gap-4">
+                <AiFillPhone />
+                <Link href="tel:+8801843821277">+880 1843 821277</Link>
+              </div>
+              <div className="flex items-center gap-4">
+                <MdEmail />
+                <Link href="mailto:tahmidurahmann@gmail.com">
+                  tahmidurahmann@gmail.com
+                </Link>
+              </div>
+              <div className="flex items-center gap-4">
+                <FaLinkedin />
+                <Link
+                  href="https://www.linkedin.com/in/tahmidurrahmann/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  /tahmidurrahmann
+                </Link>
+              </div>
+              <div className="flex items-center gap-4">
+                <FaGithub />
+                <Link
+                  href="https://github.com/tahmidurrahmann/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  /tahmidurrahmann
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
