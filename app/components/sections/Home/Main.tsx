@@ -18,8 +18,6 @@ export default function Main({ children }: MainProps) {
     const headerOffsetHeight = headerEl?.offsetHeight ?? 0;
 
     mm.add("(min-width: 1024px)", () => {
-      document.body.style.overflow = "hidden";
-
       const sections = gsap.utils.toArray<Element>("main > section");
       let isScrollInProgress = false;
 
@@ -52,7 +50,7 @@ export default function Main({ children }: MainProps) {
 
       // gsap.matchMedia runs this automatically when the query stops matching
       return () => {
-        document.body.style.overflow = "visible";
+        document.body.style.overflow = "";
       };
     });
 

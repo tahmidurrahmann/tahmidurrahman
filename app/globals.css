@@ -3,3 +3,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* globals.css */
+@media (min-width: 1024px) {
+  body {
+    overflow: hidden;
+  }
+}
