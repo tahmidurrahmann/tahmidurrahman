@@ -1,43 +1,47 @@
 import type { ReactNode } from "react";
 import Providers from "./providers";
 import NavBar from "../components/shared/Navbar/Navbar";
+import type { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Tahmidur Rahman | Full-Stack Web Developer",
   description:
-    "I'm Tahmidur Rahman, a Full-Stack Web developer who loves crafting unique and intuitive web experiences with a focus on clean code and user-centered design.",
+    "Full-Stack Developer from Dhaka, Bangladesh. I build production-grade web apps with Next.js, Node.js, MongoDB, and TypeScript. Open to full-time opportunities.",
   alternates: {
-    canonical: `https://tahmidurrahman.vercel.app`,
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   openGraph: {
     title: "Tahmidur Rahman | Full-Stack Web Developer",
     description:
-      "I'm Tahmidur Rahman, a Full-Stack Web developer who loves crafting unique and intuitive web experiences with a focus on clean code and user-centered design.",
-    url: "https://tahmidurrahman.vercel.app",
+      "Full-Stack Developer from Dhaka, Bangladesh. I build production-grade web apps with Next.js, Node.js, MongoDB, and TypeScript. Open to full-time opportunities.",
+    url: "/",
     siteName: "Tahmidur Rahman",
+    locale: "en_US",
+    type: "website",
     images: [
       {
-        url: "https://www.dropbox.com/scl/fi/2k9nmpqvln1sty6z4ywjp/home.png?rlkey=dt8cd1wjb9fmzd5c4s28rww1g&raw=1",
+        url: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1782022282/programmer-working_zshm76.webp",
         width: 900,
         height: 600,
-        alt: "developer coding",
+        alt: "Tahmidur Rahman — Full-Stack Web Developer",
       },
     ],
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Tahmidur Rahman | Full-Stack Web Developer",
     description:
-      "I'm Tahmidur Rahman, a Full-Stack Web developer who loves crafting unique and intuitive web experiences with a focus on clean code and user-centered design.",
-    domain: "https://tahmidurrahman.vercel.app",
-    url: `https://tahmidurrahman.vercel.app`,
+      "Full-Stack Developer from Dhaka, Bangladesh. I build production-grade web apps with Next.js, Node.js, MongoDB, and TypeScript. Open to full-time opportunities.",
     images: [
       {
-        url: "https://www.dropbox.com/scl/fi/2k9nmpqvln1sty6z4ywjp/home.png?rlkey=dt8cd1wjb9fmzd5c4s28rww1g&raw=1",
+        url: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1782022282/programmer-working_zshm76.webp",
         width: 900,
         height: 600,
-        alt: "developer coding",
+        alt: "Tahmidur Rahman — Full-Stack Web Developer",
       },
     ],
   },

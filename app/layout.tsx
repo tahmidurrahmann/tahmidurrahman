@@ -1,5 +1,17 @@
 import "./globals.css";
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://tahmidurrahman.vercel.app"),
+  title: {
+    default: "Tahmidur Rahman | Full-Stack Web Developer",
+    template: "%s | Tahmidur Rahman",
+  },
+  icons: {
+    icon: "/favicon.png",
+  },
+};
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
