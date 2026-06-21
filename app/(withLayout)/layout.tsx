@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1782022282/programmer-working_zshm76.webp",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Tahmidur Rahman — Full-Stack Web Developer",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
       "Full-Stack Developer from Dhaka. I build production-grade web apps with Next.js, Node.js, MongoDB, PostgreSQL and TypeScript.",
     images: [
       {
-        url: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1782022282/programmer-working_zshm76.webp",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Tahmidur Rahman — Full-Stack Web Developer",
