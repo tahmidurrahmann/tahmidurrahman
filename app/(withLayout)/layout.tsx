@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Tahmidur Rahman | Full-Stack Web Developer",
   description:
-    "Full-Stack Developer from Dhaka, Bangladesh. I build production-grade web apps with Next.js, Node.js, MongoDB, and TypeScript. Open to full-time opportunities.",
+    "Full-Stack Developer from Dhaka. I build production-grade web apps with Next.js, Node.js, MongoDB, PostgreSQL and TypeScript.",
   alternates: {
     canonical: "/",
   },
@@ -17,33 +17,17 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Tahmidur Rahman | Full-Stack Web Developer",
     description:
-      "Full-Stack Developer from Dhaka, Bangladesh. I build production-grade web apps with Next.js, Node.js, MongoDB, and TypeScript. Open to full-time opportunities.",
+      "Full-Stack Developer from Dhaka. I build production-grade web apps with Next.js, Node.js, MongoDB, PostgreSQL and TypeScript.",
     url: "/",
     siteName: "Tahmidur Rahman",
     locale: "en_US",
     type: "website",
-    images: [
-      {
-        url: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1782022282/programmer-working_zshm76.webp",
-        width: 900,
-        height: 600,
-        alt: "Tahmidur Rahman — Full-Stack Web Developer",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Tahmidur Rahman | Full-Stack Web Developer",
     description:
-      "Full-Stack Developer from Dhaka, Bangladesh. I build production-grade web apps with Next.js, Node.js, MongoDB, and TypeScript. Open to full-time opportunities.",
-    images: [
-      {
-        url: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1782022282/programmer-working_zshm76.webp",
-        width: 900,
-        height: 600,
-        alt: "Tahmidur Rahman — Full-Stack Web Developer",
-      },
-    ],
+      "Full-Stack Developer from Dhaka. I build production-grade web apps with Next.js, Node.js, MongoDB, PostgreSQL and TypeScript.",
   },
 };
 
