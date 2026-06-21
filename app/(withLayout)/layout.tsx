@@ -22,12 +22,28 @@ export const metadata: Metadata = {
     siteName: "Tahmidur Rahman",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1782022282/programmer-working_zshm76.webp",
+        width: 1200,
+        height: 630,
+        alt: "Tahmidur Rahman — Full-Stack Web Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Tahmidur Rahman | Full-Stack Web Developer",
     description:
       "Full-Stack Developer from Dhaka. I build production-grade web apps with Next.js, Node.js, MongoDB, PostgreSQL and TypeScript.",
+    images: [
+      {
+        url: "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1782022282/programmer-working_zshm76.webp",
+        width: 1200,
+        height: 630,
+        alt: "Tahmidur Rahman — Full-Stack Web Developer",
+      },
+    ],
   },
 };
 
