@@ -6,9 +6,15 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OGImage() {
-  const imageData = await fetch(
+  const imageBuffer = await fetch(
     "https://res.cloudinary.com/tahmidur-rahman/image/upload/v1782022282/programmer-working_zshm76.webp",
   ).then((res) => res.arrayBuffer());
+
+  const uint8Array = new Uint8Array(imageBuffer);
+  let binary = "";
+  uint8Array.forEach((byte) => (binary += String.fromCharCode(byte)));
+  const base64 = btoa(binary);
+  const dataUrl = `data:image/webp;base64,${base64}`;
 
   return new ImageResponse(
     <div
@@ -160,7 +166,7 @@ export default async function OGImage() {
           }}
         />
         <img
-          src={imageData as unknown as string}
+          src={dataUrl}
           alt="Tahmidur Rahman"
           width={240}
           height={240}
